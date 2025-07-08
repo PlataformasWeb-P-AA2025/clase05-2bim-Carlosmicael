@@ -54,6 +54,14 @@ def logout_view(request):
     messages.info(request, "Has salido del sistema")
     return redirect(index)
 
+
+def en_grupo(nombre):
+    def predicate(user):
+        return user.groups.filter(name=nombre).exists()
+    return user_passes_test(predicate)
+
+
+@en_grupo('supervisor')
 def obtener_estudiante(request, id):
     """
         Listar los registros del modelo Estudiante,
@@ -72,6 +80,7 @@ def obtener_estudiante(request, id):
 
 
 # @login_required(login_url='/entrando/login/')
+#es por que lo estamos referenciando en el settings
 @login_required
 @permission_required('administrativo.add_estudiante', )
 # @permission_required('administrativo.add_estudiante', login_url="/entrando/login/")
@@ -108,8 +117,9 @@ def editar_estudiante(request, id):
     diccionario = {'formulario': formulario}
 
     return render(request, 'editarEstudiante.html', diccionario)
+    
 
-
+@en_grupo('supervisor')
 def eliminar_estudiante(request, id):
     """
     """
@@ -119,10 +129,6 @@ def eliminar_estudiante(request, id):
 
 # atención para permitir que una función sea usada por
 # un grupo específico
-def en_grupo(nombre):
-    def predicate(user):
-        return user.groups.filter(name=nombre).exists()
-    return user_passes_test(predicate)
 
 @en_grupo('supervisor')
 def crear_numero_telefonico(request):
@@ -141,7 +147,7 @@ def crear_numero_telefonico(request):
 
     return render(request, 'crearNumeroTelefonico.html', diccionario)
 
-
+@en_grupo('supervisor')
 def editar_numero_telefonico(request, id):
     """
     """
@@ -157,7 +163,8 @@ def editar_numero_telefonico(request, id):
     diccionario = {'formulario': formulario}
 
     return render(request, 'crearNumeroTelefonico.html', diccionario)
-
+    
+@en_grupo('supervisor')
 def crear_numero_telefonico_estudiante(request, id):
     """
     """
