@@ -56,7 +56,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-# agregar apps para Auth - paso 3
+# agregar apps para Auth - paso 3.1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 MIDDLEWARE = [
@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #paso 3.2
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -156,4 +157,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # agregar apps para Auth - paso 4
 LOGIN_REDIRECT_URL = reverse_lazy('index')
-SITE_ID = 3
+#oho revisar aqui muy importante el i le pertenece a sitios
+SITE_ID = 4
