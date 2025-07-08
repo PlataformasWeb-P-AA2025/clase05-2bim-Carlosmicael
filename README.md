@@ -1,5 +1,7 @@
 # clase05-2bim
 
+# Integrantes : Carlos Lopez , Gabriela Riofrio
+
 * Considerar lo siguiente para el proyecto de **ejemplo2**
 
 ## Dar de alta una aplicación en GitHub OAuth application
